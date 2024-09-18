@@ -2,23 +2,25 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const port = 4000;
+const book = require('./controllers/Home.controller');
 
 app.use(express.static(path.join(__dirname, 'assets')));
 app.set('view engine', 'ejs');
 app.set('views', 'views');
+const RouterHome = require('./routers/Home.route');
+const RouterBook = require('./routers/book.route');
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
+app.use('/', RouterHome);
+app.use('/', RouterBook);
 
 app.get('/contact', (req, res) => {
   res.render('contact');
 });
+// app.get('/details', (req, res) => {
+//   res.render('details');
+// });
 app.get('/about', (req, res) => {
   res.render('about');
-});
-app.get('/books', (req, res) => {
-  res.render('books');
 });
 
 app.get('/login', (req, res) => {
