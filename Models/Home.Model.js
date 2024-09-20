@@ -10,7 +10,7 @@ var schemaBook = mongoose.Schema({
 
 var Book = mongoose.model('book', schemaBook);
 let url = 'mongodb://localhost:27017/Library';
-exports.getthreeBooks = () => {
+exports.getThreeBooks = () => {
   return new Promise((resolve, reject) => {
     mongoose
       .connect(url)
@@ -32,7 +32,7 @@ exports.getallBooks = () => {
         return Book.find({});
       })
       .then(books => {
-        // mongoose.disconnect();
+        mongoose.disconnect();
         resolve(books);
       })
       .catch(err => reject(err));
@@ -47,7 +47,7 @@ exports.getoneBook = id => {
         return Book.findById(id);
       })
       .then(books => {
-        // mongoose.disconnect();
+        mongoose.disconnect();
         resolve(books);
       })
       .catch(err => reject(err));

@@ -1,5 +1,10 @@
-const HomeModel = require('../Models/Home.Model');
+const bookModel = require('../Models/Home.Model');
 
 exports.threebookController = (req, res) => {
-  HomeModel.getthreeBooks().then(books => res.render('index', { books: books }));
+  bookModel.getThreeBooks().then(books => {
+    res.render('index', {
+      books: books,
+      verifUser: req.session.userId,
+    });
+  });
 };
