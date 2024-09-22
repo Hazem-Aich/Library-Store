@@ -1,25 +1,35 @@
-<%- include('parts/top.ejs') %> <br /><br /><br /><br /><br />
+<%- include('parts/top.ejs')%>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <img src="/uploads/<%= book.image %>" alt="">
+      </div>
+      <div class="col">
+        <h1><%= book.title %></h1><h4><%= book.author %></h4>
+        <span><%= book.price %>$</span>
+        <p><%= book.description %></p>
 
-<% if (book) { %>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <img src="/<%= book.image %>" alt="" />
+      </div>
     </div>
-    <div class="col">
-      <h1><%= book.title %></h1>
-      <p><%= book.description %></p>
-      <p>Price: $<%= book.price %></p>
-      <p>Author: <%= book.author %></p>
-    </div>
-  </div>
 </div>
-<% } else { %>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h1>Book not found</h1>
-    </div>
-  </div>
-</div>
-<% } %> <%- include('parts/bottom.ejs') %>
+  
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<%-include('parts/bottom.ejs')%>

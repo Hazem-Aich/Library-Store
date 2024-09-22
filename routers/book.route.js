@@ -1,7 +1,29 @@
-const bookController = require('../controllers/book.controller');
-const Router = require('express').Router();
-const GuardAuth = require('../routers/GuardAuth');
-Router.get('/books', GuardAuth.isAuth, bookController.bookController);
-Router.get('/books/:id', GuardAuth.isAuth, bookController.getOneBookDetailsController);
+const bookController=require('../controllers/book.controller')
+const route = require('./auth.route')
+const router=require('express').Router()
+const GuardAuth=require('./guardAuth')
+const multer=require('multer')
 
-module.exports = Router;
+
+
+router.get('/',GuardAuth.isAuth,bookController.getAllBooksController)
+router.get('/:id',GuardAuth.isAuth,bookController.getOneBookDetailsController)
+
+route.get('/addbook',GuardAuth.isAuth,bookController.getAddBookController)
+route.post('/addbook',multer({
+storage:multer.diskStorage({
+    destination:function (req, file, cb) {
+            cb(null, 'assets/uploads')  
+      },
+    filename:function (req, file, cb) {
+            cb(null, Date.now()+'-'+ file.originalname )      
+    }
+})
+}).single('image'),
+GuardAuth.isAuth,bookController.postAddBookController)
+
+
+
+module.exports=router
+
+

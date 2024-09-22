@@ -1,11 +1,17 @@
-const Router = require('express').Router();
-const AuthController = require('../controllers/Auth.controller');
-const body = require('express').urlencoded({ extended: true });
+const route=require('express').Router()
+const AuthController=require('../controllers/auth.controller')
+const body=require('express').urlencoded({extended:true})
+const guardAuth=require('./guardAuth') 
 
-Router.get('/register', AuthController.getRegisterPage);
-Router.post('/register', body, AuthController.postRegisterData);
-Router.get('/login', AuthController.getLoginPage);
-Router.post('/login', body, AuthController.postLoginData);
-Router.post('/logout', AuthController.logoutFunctionController);
 
-module.exports = Router;
+
+
+route.get('/register',guardAuth.notAuth,AuthController.getRegisterPage)
+route.post('/register',body,AuthController.postRegisterData)
+
+route.get('/login',guardAuth.notAuth,AuthController.getLoginPage)
+route.post('/login',body,AuthController.postLoginData)
+
+
+route.post('/logout',AuthController.logoutFunctionController)
+module.exports=route
