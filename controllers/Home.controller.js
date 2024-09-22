@@ -1,10 +1,17 @@
-const bookModel = require('../Models/Home.Model');
+const bookModel=require('../models/book.model')
 
-exports.threebookController = (req, res) => {
-  bookModel.getThreeBooks().then(books => {
-    res.render('index', {
-      books: books,
-      verifUser: req.session.userId,
-    });
-  });
-};
+
+exports.threeBooksController=(req,res,next)=>{
+
+    bookModel.getThreeBooks().then(books=>{
+        res.render('index',{
+        books:books,
+        verifUser:req.session.userId})
+    })
+
+
+}
+
+
+
+

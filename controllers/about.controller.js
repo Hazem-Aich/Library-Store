@@ -1,3 +1,3 @@
-exports.getPageAbout = (req, res) => {
-  res.render('about', { verifUser: req.session.userId });
-};
+exports.getPageAbout=(req,res)=>{
+    res.render('about',{verifUser:req.session.userId})
+}
